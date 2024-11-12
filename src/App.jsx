@@ -2,22 +2,18 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Resgister from "./Register";
-import ContinueRegister from "./ContinueRegister";
+import LogIn from "./LogIn";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Home from "./Home";
+
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Resgister />}></Route>
-          <Route
-            path="/ContinueRegister"
-            element={<ContinueRegister />}
-          ></Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LogIn />} />
+        <Route path="Home" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
