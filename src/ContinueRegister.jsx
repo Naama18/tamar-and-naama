@@ -1,18 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ContinueRegister() {
   const [inputs, setInputs] = useState({});
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
-
+  const [users, setUsers] = useState([]);
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [name, setName] = useState();
+  const [userUrl, setUserUrl] = useState();
+  useEffect(() => {
+    console.log("1");
+    const fetchItems = async () => {
+      try {
+        const response = await fetch("http://localhost:3500/users");
+        if (!response.ok) throw Error("Did not recived expected data");
+        console.log(response);
+        const listUsers = await response.json();
+        setUsers(listUsers);
+        console.log(users);
+        console.log(2);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    (async () => await fetchItems())();
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(inputs);
+    updateUser();
+    console.log(users);
   };
+
+  useEffect(() => {
+    if (users.length > 0) {
+      console.log("Last user ID:", users[users.length - 1].id);
+      setUserUrl(
+        "http://localhost:3500/users/" +
+          users[users.length - 1]["id"].toString()
+      );
+    }
+  }, [users]);
+
+  function updateUser() {
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: name, email: email, phone: phone }),
+    };
+    console.log(userUrl);
+    fetch(userUrl, requestOptions).then((response) => response.json());
+    console.log("updated!");
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -21,26 +58,26 @@ export default function ContinueRegister() {
         <input
           type="text"
           name="name"
-          value={inputs.username || ""}
-          onChange={handleChange}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </label>
       <label>
-        Enter your age:
+        Enter your email:
         <input
           type="email"
           name="email"
-          value={inputs.email || ""}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
       <label>
-        Enter your age:
+        Enter your phone number:
         <input
           type="number"
           name="telephone"
-          value={inputs.telephone || ""}
-          onChange={handleChange}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
         />
       </label>
       <input type="submit" />

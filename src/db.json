@@ -20190,14 +20190,10 @@
       }
     },
     {
-      "id": 7,
-      "name": "shira",
-      "password": "12345"
-    },
-    {
-      "id": 8,
-      "username": "naama",
-      "website": "12"
+      "name": "aaa",
+      "email": "adi@hilma.tech",
+      "phone": "1234",
+      "id": "6"
     }
   ]
 }

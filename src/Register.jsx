@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ContinueRegister from "./ContinueRegister";
 export default function Resgister() {
   const navigate = useNavigate();
   const [toNavigate, setToNavigate] = useState(true);
   const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [currentId, setCurrentId] = useState(8);
+  const [currentId, setCurrentId] = useState();
 
   const [validatePassword, setValidatePassword] = useState("");
   const API_URL = "http://localhost:3500/users";
@@ -23,6 +24,12 @@ export default function Resgister() {
     };
     (async () => await fetchItems())();
   }, []);
+  useEffect(() => {
+    if (users.length > 0) {
+      console.log(parseInt(users[users.length - 1]["id"]));
+      setCurrentId((parseInt(users[users.length - 1]["id"]) + 1).toString());
+    }
+  }, [users]);
   function userExist() {
     for (let i = 0; i < users.length; i++) {
       if (name === users[i]) {
