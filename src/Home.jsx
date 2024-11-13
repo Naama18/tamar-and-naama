@@ -1,5 +1,5 @@
 import React from "react";
-import { json, Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import HomeNavBar from "./HomeNavBar";
 
 export default function Home() {
@@ -9,8 +9,6 @@ export default function Home() {
     <>
       <HomeNavBar />
       <h1>hello {current.username}! </h1>
-      <Outlet />
-
       <Outlet />
     </>
   );

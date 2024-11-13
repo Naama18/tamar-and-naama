@@ -16,5 +16,5 @@ useEffect(() => {
   };
   (async () => await fetchTodos())();
 }, []);
-
+export default function Todos() {}
 console.log(listUsers);

@@ -9,6 +9,7 @@ import Posts from "./Posts";
 import Info from "./Info";
 import Resgister from "./Register";
 import ContinueRegister from "./ContinueRegister";
+import Todos from "./Todos";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="Home" element={<Home />}>
+          <Route path="Todos" element={<Todos />} />
+
           <Route path="Info" element={<Info />} />
           <Route path="Posts" element={<Posts />} />
         </Route>
