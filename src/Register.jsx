@@ -68,7 +68,11 @@ export default function Resgister() {
       alert("im inserting to local storage");
       localStorage.setItem(
         "currentUser",
-        JSON.stringify({ username: userName, password: password })
+        JSON.stringify({
+          username: userName,
+          password: password,
+          id: currentId,
+        })
       );
       console.log(users);
       console.log(

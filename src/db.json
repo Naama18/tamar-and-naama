@@ -20190,71 +20190,23 @@
       }
     },
     {
-      "name": "aaa",
+      "username": "qwq",
+      "website": "123",
+      "name": "123",
       "email": "adi@hilma.tech",
-      "phone": "1234",
+      "phone": "123",
+      "address": {
+        "city": "123"
+      },
       "id": "6"
     },
     {
-      "name": "ADI",
-      "email": "naamabiton@hilma.tech",
-      "phone": "11",
-      "id": "7"
-    },
-    {
-      "id": "8",
-      "username": "aaa",
-      "website": "123"
-    },
-    {
-      "name": "ADI",
-      "email": "naamabiton@hilma.tech",
-      "phone": "123",
-      "id": "9"
-    },
-    {
-      "name": "Naama",
-      "email": "naamabiton@hilma.tech",
-      "phone": "123",
-      "address": {
-        "city": "Beer sheva"
-      },
-      "id": "10"
-    },
-    {
-      "name": "kkk",
-      "email": "naamabiton@hilma.tech",
-      "phone": "000",
-      "address": {
-        "city": "Beer sheva"
-      },
-      "id": "11"
-    },
-    {
-      "username": "qqq",
+      "username": "wer",
+      "website": "1",
+      "id": "7",
       "name": "123",
       "email": "naamabiton@hilma.tech",
-      "phone": "1",
-      "address": {
-        "city": "Beer sheva"
-      },
-      "id": "12"
-    },
-    {
-      "username": "ww",
-      "name": "fghj",
-      "email": "adi@hilma.tech",
-      "phone": "123",
-      "address": {
-        "city": "Beer sheva"
-      },
-      "id": "13"
-    },
-    {
-      "username": "QQQQ",
-      "name": "123",
-      "email": "naamabiton@hilma.tech",
-      "phone": "12",
+      "phone": "13",
       "address": {
         "city": "12"
       },
