@@ -5,21 +5,21 @@ import "./App.css";
 import LogIn from "./LogIn";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./Home";
-import Resgister from "./Register";
-import ContinueRegister from "./ContinueRegister";
+import Posts from "./Posts"
 import Info from "./Info";
-import Posts from "./Posts";
+import HomeNavBar from "./HomeNavBar";
+
 function App() {
+  // const [showNavBar, setShowNavBar]=useState(true)
   return (
     <BrowserRouter>
+    {/* {showNavBar&&<HomeNavBar/>} */}
       <Routes>
-        <Route path="/" element={<LogIn />} />
-        <Route path="Home" element={<Home />}>
+        <Route path="/" element={<LogIn/>} />
+        <Route path="Home" element={<Home />} >
           <Route path="Info" element={<Info />} />
           <Route path="Posts" element={<Posts />} />
-        </Route>
-        <Route path="Register" element={<Resgister />}></Route>
-        <Route path="ContinueRegister" element={<ContinueRegister />} />
+          </Route>
       </Routes>
     </BrowserRouter>
   );

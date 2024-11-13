@@ -3,7 +3,9 @@ import React from 'react'
 
 export default function Info() {
 
-    let current = JSON.parse(localStorage.getItem("currrentUser"))
+    let current = JSON.parse(localStorage.getItem("currentUser"))
+    console.log('current: ', current);
+    
     let name = current.name;
     console.log('name: ', name);
 
@@ -11,15 +13,16 @@ export default function Info() {
     console.log('email: ', email);
     let phone = current.phone;
     console.log('phone: ', phone);
-    let adress = current.address;
+    let adress = current.address.city;
     console.log('adress: ', adress);
     return (
         <div>
-            <h1>more information about: {name}</h1>
+            <h1>more information:</h1>
             <ul>
+                <li> full name: {name}</li>
                 <li>email: {email}</li>
                 <li>phone: {phone}</li>
-                <li> adress: {adress}</li>
+                <li> city: {adress}</li>
             </ul>
         </div>
     );
