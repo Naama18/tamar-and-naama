@@ -8,7 +8,8 @@ export default function Todos() {
   const [newTodo, setNewTodo] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [edit, setEdit] = useState(false);
-
+  const [currentTodo, setCurrentTodo] = useState("");
+  console.log("hey");
   function AddTodoToDb(newTodoItem) {
     const data = newTodo;
     const requestOptions = {
@@ -50,9 +51,14 @@ export default function Todos() {
         console.log(err.message);
       }
     };
-
     (async () => await fetchTodos())();
   }, []);
+
+  useEffect(() => {
+    console.log("fetching ", todos);
+
+    setEdit(new Array(todos.length).fill(false));
+  }, [todos]);
 
   const handleAddTodo = () => {
     if (newTodo.trim() === "") return; // Don't add empty todos
@@ -89,7 +95,7 @@ export default function Todos() {
   const filteredTodos = todos.filter((todo) =>
     todo.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  console.log(todos);
   return (
     <>
       <div>
@@ -120,18 +126,49 @@ export default function Todos() {
       <button onClick={sortByCompleted}>Sort by Completed</button>
 
       <form>
-        {filteredTodos.map((todo) => (
+        {/* {console.log(todos.title)} */}
+
+        {filteredTodos.map((todo, index) => (
           <div key={todo.title}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleCheckboxChange(todo.id)} // Toggle completed status
-              />
-              {todo.title}
-            </label>
+            {edit[index] ? (
+              <label>
+                <input
+                  onChange={() => setCurrentTodo((e) => e.target.value)}
+                  value={todo.title} // Toggle completed status
+                />
+              </label>
+            ) : (
+              <label>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handleCheckboxChange(todo.id)}
+
+                  // Toggle completed status
+                />
+                {todo.title}
+              </label>
+            )}
             <button onClick={() => removeFromDb(todo)}>-</button>
-            <button onClick={() => setEdit(true)}>edit</button>:
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+
+                {
+                  console.log("edit: ", edit);
+                }
+                setEdit(
+                  (edit) =>
+                    (edit = [
+                      ...edit.slice(0, index),
+                      !edit[index],
+                      ...edit.slice(index + 1),
+                    ])
+                );
+              }}
+            >
+              {!edit[index] ? "edit" : "submit"}
+            </button>
           </div>
         ))}
       </form>
