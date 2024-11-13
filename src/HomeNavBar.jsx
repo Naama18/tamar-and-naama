@@ -10,8 +10,10 @@ export default function HomeNavBar() {
         localStorage.setItem("currentUser", {});
         navigate("/");
       }
+      console.log("hi")
   return (
  <nav>
+    
     <button onClick={onclickLogout}>Logout</button>
       <Link to="Info">
         <button>Info</button>
