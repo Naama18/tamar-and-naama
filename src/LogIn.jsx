@@ -38,7 +38,7 @@ export default function LogIn() {
             console.log('username: ', username);
             if (username === usersArray[i].username && password === usersArray[i].website) {
                 console.log("in")
-                localStorage.setItem("currentUser", JSON.stringify({ "website": password, "username": username }));
+                localStorage.setItem("currentUser", JSON.stringify(usersArray[i]));
                 exist=true;
 
 
