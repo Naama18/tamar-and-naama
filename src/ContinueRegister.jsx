@@ -6,6 +6,8 @@ export default function ContinueRegister() {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [name, setName] = useState();
+  const [city, setCity] = useState();
+
   const [userUrl, setUserUrl] = useState();
   useEffect(() => {
     console.log("1");
@@ -44,7 +46,13 @@ export default function ContinueRegister() {
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, email: email, phone: phone }),
+      body: JSON.stringify({
+        username: users[users.length - 1].username,
+        name: name,
+        email: email,
+        phone: phone,
+        address: { city: city },
+      }),
     };
     console.log(userUrl);
     fetch(userUrl, requestOptions).then((response) => response.json());
@@ -78,6 +86,15 @@ export default function ContinueRegister() {
           name="telephone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+        />
+      </label>
+      <label>
+        Enter your city:
+        <input
+          type="text"
+          name="city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
         />
       </label>
       <input type="submit" />

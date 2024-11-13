@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ContinueRegister from "./ContinueRegister";
 export default function Resgister() {
   const navigate = useNavigate();
-  const [toNavigate, setToNavigate] = useState(true);
   const [users, setUsers] = useState([]);
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [currentId, setCurrentId] = useState();
 
@@ -32,7 +31,7 @@ export default function Resgister() {
   }, [users]);
   function userExist() {
     for (let i = 0; i < users.length; i++) {
-      if (name === users[i]) {
+      if (userName === users[i]) {
         return true;
       }
     }
@@ -45,7 +44,7 @@ export default function Resgister() {
 
       // Adding body or contents to send
       body: JSON.stringify({
-        username: name,
+        username: userName,
         website: password,
         id: currentId,
       }),
@@ -69,7 +68,7 @@ export default function Resgister() {
       alert("im inserting to local storage");
       localStorage.setItem(
         "current-user",
-        JSON.stringify({ name: name, password: password })
+        JSON.stringify({ username: userName, password: password })
       );
       console.log(users);
       console.log(
@@ -78,11 +77,10 @@ export default function Resgister() {
       );
 
       addUser();
+      console.log("register", users);
       navigate("/ContinueRegister");
-      setToNavigate(true);
     } else {
       alert("username of password invalid");
-      setToNavigate(false);
     }
   };
 
@@ -92,8 +90,9 @@ export default function Resgister() {
         Enter your user-name:
         <input
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name="username"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           required
         />
       </label>
