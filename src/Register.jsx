@@ -25,7 +25,6 @@ export default function Resgister() {
   }, []);
   useEffect(() => {
     if (users.length > 0) {
-      console.log(parseInt(users[users.length - 1]["id"]));
       setCurrentId((parseInt(users[users.length - 1]["id"]) + 1).toString());
     }
   }, [users]);
@@ -74,14 +73,8 @@ export default function Resgister() {
           id: currentId,
         })
       );
-      console.log(users);
-      console.log(
-        'users[users.length - 1]["id"]: ',
-        users[users.length - 1]["id"]
-      );
 
       addUser();
-      console.log("register", users);
       navigate("/ContinueRegister");
     } else {
       alert("username of password invalid");
