@@ -10,6 +10,7 @@ import Info from "./Info";
 import Resgister from "./Register";
 import ContinueRegister from "./ContinueRegister";
 import Todos from "./Todos";
+import Albums from "./Albums";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
           <Route path="Info" element={<Info />} />
           <Route path="Posts" element={<Posts />} />
+          <Route path="Albums" element={<Albums />}></Route>
         </Route>
         <Route path="Register" element={<Resgister />} />
         <Route path="ContinueRegister" element={<ContinueRegister />} />

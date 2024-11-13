@@ -2308,13 +2308,6 @@
   "photos": [
     {
       "albumId": 1,
-      "id": "1",
-      "title": "accusamus beatae ad facilis cum similique qui sunt",
-      "url": "https://via.placeholder.com/600/92c952",
-      "thumbnailUrl": "https://via.placeholder.com/150/92c952"
-    },
-    {
-      "albumId": 1,
       "id": "2",
       "title": "reprehenderit est deserunt velit ipsam",
       "url": "https://via.placeholder.com/600/771796",
@@ -2648,13 +2641,6 @@
       "title": "quasi quae est modi quis quam in impedit",
       "url": "https://via.placeholder.com/600/2cd88b",
       "thumbnailUrl": "https://via.placeholder.com/150/2cd88b"
-    },
-    {
-      "albumId": 1,
-      "id": "50",
-      "title": "et inventore quae ut tempore eius voluptatum",
-      "url": "https://via.placeholder.com/600/9e59da",
-      "thumbnailUrl": "https://via.placeholder.com/150/9e59da"
     },
     {
       "albumId": 2,
@@ -19469,21 +19455,26 @@
       "title": "omnis veritatis ut officia doloremque sed",
       "url": "https://via.placeholder.com/600/952bbc",
       "thumbnailUrl": "https://via.placeholder.com/150/952bbc"
+    },
+    {
+      "id": "51",
+      "albumId": "5",
+      "title": "naan",
+      "thumbnailUrl": "newPhotoItem"
+    },
+    {
+      "id": "92.76919125548605",
+      "userId": "1",
+      "title": "naama"
+    },
+    {
+      "id": "2",
+      "albumId": "92.76919125548605",
+      "title": "shira",
+      "thumbnailUrl": "https://via.placeholder.com/150/d32776"
     }
   ],
   "todos": [
-    {
-      "userId": 1,
-      "id": "1",
-      "title": "delectus aut autem",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": "2",
-      "title": "quis ut nam facilis et officia qui",
-      "completed": false
-    },
     {
       "userId": 1,
       "id": "3",
@@ -19578,24 +19569,6 @@
       "userId": 1,
       "id": "18",
       "title": "dolorum est consequatur ea mollitia in culpa",
-      "completed": false
-    },
-    {
-      "userId": 1,
-      "id": "19",
-      "title": "molestiae ipsa aut voluptatibus pariatur dolor nihil",
-      "completed": true
-    },
-    {
-      "userId": 1,
-      "id": "20",
-      "title": "ullam nobis libero sapiente ad optio sint",
-      "completed": true
-    },
-    {
-      "userId": 2,
-      "id": "21",
-      "title": "suscipit repellat esse quibusdam voluptatem incidunt",
       "completed": false
     },
     {
@@ -20071,6 +20044,12 @@
       "id": "100",
       "title": "excepturi a et neque qui expedita vel voluptate",
       "completed": false
+    },
+    {
+      "id": "18",
+      "userId": "1",
+      "title": "naama",
+      "completed": false
     }
   ],
   "users": [
@@ -20203,14 +20182,13 @@
     {
       "username": "wer",
       "website": "1",
-      "id": "7",
+      "id": "14",
       "name": "123",
       "email": "naamabiton@hilma.tech",
       "phone": "13",
       "address": {
         "city": "12"
-      },
-      "id": "14"
+      }
     },
     {
       "username": "naama",
