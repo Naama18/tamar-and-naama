@@ -46,16 +46,20 @@ export default function ContinueRegister() {
   }, [users]);
 
   function updateUser() {
+    const data = JSON.stringify({
+      username: users[users.length - 1].username,
+      website: users[users.length - 1].website,
+      id: users[users.length - 1].id,
+      name: name,
+      email: email,
+      phone: phone,
+      address: { city: city },
+    });
+    localStorage.setItem("currentUser", data);
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: users[users.length - 1].username,
-        name: name,
-        email: email,
-        phone: phone,
-        address: { city: city },
-      }),
+      body: data,
     };
     console.log(userUrl);
     fetch(userUrl, requestOptions).then((response) => response.json());
