@@ -13,7 +13,7 @@ export default function Info() {
     console.log('email: ', email);
     let phone = current.phone;
     console.log('phone: ', phone);
-    let adress = current.address.city;
+    let address = current.address.city;
     console.log('adress: ', address);
     return (
         <div>

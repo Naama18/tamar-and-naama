@@ -14,9 +14,6 @@ export default function Home() {
       <h1>hello {current.username}! </h1>
       <Outlet/>
 
-    
-      
-      <Outlet />
     </>
   );
 }
