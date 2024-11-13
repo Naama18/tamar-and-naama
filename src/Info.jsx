@@ -14,7 +14,7 @@ export default function Info() {
     let phone = current.phone;
     console.log('phone: ', phone);
     let adress = current.address.city;
-    console.log('adress: ', adress);
+    console.log('adress: ', address);
     return (
         <div>
             <h1>more information:</h1>
@@ -22,7 +22,7 @@ export default function Info() {
                 <li> full name: {name}</li>
                 <li>email: {email}</li>
                 <li>phone: {phone}</li>
-                <li> city: {adress}</li>
+                <li> city: {address}</li>
             </ul>
         </div>
     );
