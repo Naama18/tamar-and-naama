@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ContinueRegister() {
   const [inputs, setInputs] = useState({});
@@ -7,6 +8,7 @@ export default function ContinueRegister() {
   const [phone, setPhone] = useState();
   const [name, setName] = useState();
   const [city, setCity] = useState();
+  const navigate = useNavigate();
 
   const [userUrl, setUserUrl] = useState();
   useEffect(() => {
@@ -30,6 +32,7 @@ export default function ContinueRegister() {
     event.preventDefault();
     updateUser();
     console.log(users);
+    navigate("/Home");
   };
 
   useEffect(() => {
