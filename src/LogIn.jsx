@@ -1,10 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LogIn.css";
+import "./style.css";
 
 export default function LogIn() {
-  // props.setShowNavBar(false);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +24,6 @@ export default function LogIn() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("submit");
     let exist = false;
     for (let i = 0; i < usersArray.length; i++) {
       if (
@@ -39,7 +37,7 @@ export default function LogIn() {
     if (!exist) {
       alert("שם משתמש או סיסמא שגויים");
     } else {
-      alert("נכנס בצלחה");
+      alert("נכנס בהצלחה");
       navigate("/Home");
     }
   }
@@ -70,6 +68,7 @@ export default function LogIn() {
             required
           />
         </label>
+        <br/>
         <input type="submit" />
       </form>
     </>

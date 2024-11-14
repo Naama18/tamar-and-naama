@@ -5,11 +5,9 @@ import { useState, useEffect } from 'react'
 import Post from './Post'
 
 export default function Posts() {
-    const [id, setId] = useState("");
     const [title, setTitle] = useState("");
     const [bodynew, setBodynew] = useState("")
-    const [body, setBody] = useState("")
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([]);//posts
     const [add, setAdd] = useState(false)
     const current = JSON.parse(localStorage.getItem("currentUser"));
     const userId = current.id;

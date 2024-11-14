@@ -1,10 +1,4 @@
 import { useState, useEffect } from "react";
-// if (localStorage.getItem("currentUser") !== null ) {
-//   const currentUserId = JSON.parse(localStorage.getItem("currentUser"))["id"];
-//   const API_URL = `http://localhost:3500/todos?userId=${currentUserId}`;
-// } else {
-//   const API_URL = `http://localhost:3500/todos`;
-// }
 
 export default function Todos() {
   const currentUserId = JSON.parse(localStorage.getItem("currentUser"))["id"];
@@ -14,7 +8,20 @@ export default function Todos() {
   const [searchQuery, setSearchQuery] = useState("");
   const [editIndex, setEditIndex] = useState(null); // Track the index of the todo being edited
   const [editedTitle, setEditedTitle] = useState(""); // Store the title of the todo being edited
-
+  // Fetch todos on component mount
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw Error("Did not receive expected data");
+        const listTodos = await response.json();
+        setTodos(listTodos);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchTodos();
+  }, []);
   function AddTodoToDb(newTodoItem) {
     const requestOptions = {
       method: "POST",
@@ -44,20 +51,7 @@ export default function Todos() {
       .catch((error) => console.error("Error deleting todo:", error));
   }
 
-  // Fetch todos on component mount
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw Error("Did not receive expected data");
-        const listTodos = await response.json();
-        setTodos(listTodos);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-    fetchTodos();
-  }, []);
+
 
   const handleAddTodo = () => {
     if (newTodo.trim() === "") return; // Don't add empty todos

@@ -12,6 +12,7 @@ import ContinueRegister from "./ContinueRegister";
 import Todos from "./Todos";
 import Albums from "./Albums";
 import Index from "./Index";
+import NoPage from "./NoPage";
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +29,7 @@ function App() {
         </Route>
         <Route path="Register" element={<Resgister />} />
         <Route path="ContinueRegister" element={<ContinueRegister />} />
+        <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
   );
