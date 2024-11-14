@@ -1,20 +1,18 @@
-
-import React from 'react'
+import React from "react";
 import { json, Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import "./App.css";
 
 export default function HomeNavBar() {
-    const navigate = useNavigate();
-    function onclickLogout() {
-        localStorage.setItem("currentUser", {});
-        navigate("/");
-      }
-      console.log("hi")
+  const navigate = useNavigate();
+  function onclickLogout() {
+    localStorage.setItem("currentUser", {});
+    navigate("/");
+  }
+  console.log("hi");
   return (
- <nav>
-    
-    <button onClick={onclickLogout}>Logout</button>
+    <nav>
+      <button onClick={onclickLogout}>Logout</button>
       <Link to="Info">
         <button>Info</button>
       </Link>
@@ -27,9 +25,6 @@ export default function HomeNavBar() {
       <Link to="Albums">
         <button>Albums</button>
       </Link>
-      
-
- </nav>
-  )
+    </nav>
+  );
 }
-
