@@ -1,6 +1,19 @@
 *{
-    background-color:rgb(105, 148, 183);
-}
+    background-color: #f1e1c6; /* Classic Beige */
+    color: #6b4f31; /* Walnut Brown */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
 button{
     display: inline-block;
     padding: 15px 25px;
@@ -15,3 +28,6 @@ button{
     border-radius: 15px;
     box-shadow: 0 9px #999;
   }
+*{
+    margin-top: auto;
+}
