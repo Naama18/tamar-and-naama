@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LogIn from "./LogIn";
 import Resgister from "./Register";
-import "./index.css"
+
 
 export default function Index() {
   const [displayRegister, setDisplayRegister] = useState(false);
