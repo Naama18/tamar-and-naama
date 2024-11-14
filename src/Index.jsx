@@ -10,9 +10,12 @@ export default function Index() {
    
     <div class="indexContainer">
       <h1>Welcome to our Website!</h1>
+      <h3>please log in</h3>
+      
       <button onClick={() => {setDisplayLogIn(true);
         setDisplayRegister(false)}}>Log In</button>
       {displayLogIn && <LogIn />}
+      <h3>don't have an account?</h3>
       <button onClick={() => {setDisplayRegister(true);
       setDisplayLogIn(false)}
 

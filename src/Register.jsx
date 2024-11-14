@@ -63,8 +63,6 @@ export default function Resgister() {
     event.preventDefault();
     if (!userExist() && validatePassword === password) {
       setCurrentId((prev) => prev + 1);
-
-      alert("im inserting to local storage");
       localStorage.setItem(
         "currentUser",
         JSON.stringify({
@@ -93,24 +91,27 @@ export default function Resgister() {
           required
         />
       </label>
+      <br/>
       <label>
         Enter your password:
         <input
-          type="number"
+          type="password"
           name="website"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
+      <br/>
       <label>
         Verify your password:
         <input
-          type="number"
+          type="password"
           name="verifyPassword"
           onChange={(e) => setValidatePassword(e.target.value)}
           value={validatePassword}
         />
       </label>
+      <br/>
       <input type="submit" />
     </form>
   );

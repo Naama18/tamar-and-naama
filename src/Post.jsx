@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react'
 
 export default function Post(props) {
     const [body, setBody] = useState("");
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([]);//comments
     const [showComments, setShowComments] = useState(false);
     const [addComment, setAddComment] = useState(false)
     const [username, setUserNmae] = useState("")
     const [newcomment, setnewcomment] = useState("")
-    const [submited, setSubmited] = useState(false)
     const [EditTitle, setEditTitle] = useState(false);
     const [title, setTitle] = useState("")
-    console.log(data)
     async function handleSaveChanges() {
         const url = `http://localhost:3500/posts/${props.post.id}`
         const updateOption = {
@@ -30,7 +28,7 @@ export default function Post(props) {
 
     }
     useEffect(() => {
-        async function getPosts(url) {
+        async function getComments(url) {
             try {
                 let response = await fetch(url);
                 if (!response.ok) throw Error("Did not recived expected data")
@@ -42,7 +40,7 @@ export default function Post(props) {
             }
 
         };
-        (async () => await getPosts(`http://localhost:3500/comments?postId=${props.post.id}`))()
+        (async () => await getComments(`http://localhost:3500/comments?postId=${props.post.id}`))()
 
     }, [])
     function DeletePost() {
@@ -81,13 +79,8 @@ export default function Post(props) {
             .catch(error => console.error('Error posting data:', error));
     }
     function DeleteComment(idcomment, comment) {
-        console.log('comment: ', comment);
-
-        console.log(idcomment)
         let array = data;
         const newArray = array.filter(item => item.id !== idcomment);
-        console.log('newArray: ', newArray);
-
         setData(newArray);
         fetch(`http://localhost:3500/comments/${idcomment}`, { method: "DELETE" })
             .then((response) => {
@@ -107,12 +100,8 @@ export default function Post(props) {
         setEditTitle(false);
         let arrayEdit = props.arr;
         arrayEdit[props.i].title = title;
-        console.log(' arrayEdit[props.i].title: ', arrayEdit[props.i].title);
         props.setArr(arrayEdit);
         handleSaveChanges();
-
-
-
     }
 
 

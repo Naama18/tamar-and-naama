@@ -54,10 +54,8 @@ export default function Photos(props) {
       thumbnailUrl: urlOfImg,
       id: (photos.length + 1).toString(),
     };
-    console.log(newPhoto);
     setPhotos((prevPhoto) => [...prevPhoto, newPhoto]); // Add new todo
     AddTodoToDb(newPhoto);
-    console.log(photos);
   };
   return (
     <>
