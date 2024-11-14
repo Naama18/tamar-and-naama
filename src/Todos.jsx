@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
-
-const currentUserId = JSON.parse(localStorage.getItem("currentUser"))["id"];
-const API_URL = `http://localhost:3500/todos?userId=${currentUserId}`;
+// if (localStorage.getItem("currentUser") !== null ) {
+//   const currentUserId = JSON.parse(localStorage.getItem("currentUser"))["id"];
+//   const API_URL = `http://localhost:3500/todos?userId=${currentUserId}`;
+// } else {
+//   const API_URL = `http://localhost:3500/todos`;
+// }
 
 export default function Todos() {
+  const currentUserId = JSON.parse(localStorage.getItem("currentUser"))["id"];
+  const API_URL = `http://localhost:3500/todos?userId=${currentUserId}`;
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [edit, setEdit] = useState(false);
+  const [editIndex, setEditIndex] = useState(null); // Track the index of the todo being edited
+  const [editedTitle, setEditedTitle] = useState(""); // Store the title of the todo being edited
 
   function AddTodoToDb(newTodoItem) {
-    const data = newTodo;
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -18,9 +23,10 @@ export default function Todos() {
     };
     fetch("http://localhost:3500/todos", requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log("Todo updated:", data))
-      .catch((error) => console.error("Error updating todo:", error));
+      .then((data) => console.log("Todo added:", data))
+      .catch((error) => console.error("Error adding todo:", error));
   }
+
   function removeFromDb(itemToRemove) {
     const updatedTodos = todos.filter((todo) => todo.id !== itemToRemove.id);
     setTodos(updatedTodos);
@@ -50,8 +56,7 @@ export default function Todos() {
         console.log(err.message);
       }
     };
-
-    (async () => await fetchTodos())();
+    fetchTodos();
   }, []);
 
   const handleAddTodo = () => {
@@ -63,11 +68,11 @@ export default function Todos() {
       completed: false,
       id: (todos.length + Math.random() * 1000).toString(),
     };
-    console.log(todos);
     setTodos((prevTodos) => [...prevTodos, newTodoItem]); // Add new todo
     AddTodoToDb(newTodoItem);
-    console.log(todos);
+    setNewTodo(""); // Clear input field after adding
   };
+
   const handleCheckboxChange = (id) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
@@ -81,6 +86,7 @@ export default function Todos() {
       [...prevTodos].sort((a, b) => b.completed - a.completed)
     );
   }
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value); // Update search query state
   };
@@ -89,6 +95,28 @@ export default function Todos() {
   const filteredTodos = todos.filter((todo) =>
     todo.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleEditChange = (e) => {
+    setEditedTitle(e.target.value); // Update the title being edited
+  };
+
+  const handleEditSubmit = (todo) => {
+    // Update the todo in the list with the new title
+    const updatedTodos = todos.map((item) =>
+      item.id === todo.id ? { ...item, title: editedTitle } : item
+    );
+    setTodos(updatedTodos);
+    setEditIndex(null); // Stop editing
+    setEditedTitle(""); // Clear the edited title
+    fetch(`http://localhost:3500/todos/${todo.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...todo, title: editedTitle }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log("Todo updated:", data))
+      .catch((error) => console.error("Error updating todo:", error));
+  };
 
   return (
     <>
@@ -117,21 +145,52 @@ export default function Todos() {
 
         <button onClick={handleAddTodo}>+</button>
       </div>
+
       <button onClick={sortByCompleted}>Sort by Completed</button>
 
       <form>
-        {filteredTodos.map((todo) => (
+        {filteredTodos.map((todo, index) => (
           <div key={todo.title}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleCheckboxChange(todo.id)} // Toggle completed status
-              />
-              {todo.title}
-            </label>
-            <button onClick={() => removeFromDb(todo)}>-</button>
-            <button onClick={() => setEdit(true)}>edit</button>:
+            {editIndex === index ? (
+              <div>
+                <label>
+                  <input
+                    type="text"
+                    value={editedTitle} // Use the editedTitle state for the input
+                    onChange={handleEditChange} // Update the title being edited
+                  />
+                </label>
+                <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleEditSubmit(todo); // Submit the edited title
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+            ) : (
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => handleCheckboxChange(todo.id)}
+                  />
+                  {todo.title}
+                </label>
+                <button onClick={() => removeFromDb(todo)}>-</button>
+                <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setEditIndex(index);
+                    setEditedTitle(todo.title);
+                  }}
+                >
+                  Edit
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </form>

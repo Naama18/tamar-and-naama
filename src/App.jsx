@@ -11,12 +11,14 @@ import Resgister from "./Register";
 import ContinueRegister from "./ContinueRegister";
 import Todos from "./Todos";
 import Albums from "./Albums";
-
+import Index from "./Index";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LogIn />} />
+        <Route path="/" element={<Index />} />
+        <Route path="/LogIn" element={<LogIn />} />
+
         <Route path="Home" element={<Home />}>
           <Route path="Todos" element={<Todos />} />
 
