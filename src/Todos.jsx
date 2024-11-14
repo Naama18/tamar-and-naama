@@ -129,6 +129,7 @@ export default function Todos() {
           <label>
             Search by title:
             <input
+              className="searchInput"
               type="text"
               value={searchQuery}
               onChange={handleSearchChange} // Update search query
@@ -136,16 +137,14 @@ export default function Todos() {
             />
           </label>
         </div>
-<br/>
+        <br />
         <button onClick={handleAddTodo}>+</button>
         <button onClick={sortByCompleted}>Sort by Completed</button>
       </div>
 
-     
-
       <form>
         {filteredTodos.map((todo, index) => (
-          <div  class="todoClass" key={todo.title}>
+          <div class="todoClass" key={todo.title}>
             {editIndex === index ? (
               <div>
                 <label>
@@ -174,7 +173,7 @@ export default function Todos() {
                   />
                   {todo.title}
                 </label>
-                <br/>
+                <br />
                 <button onClick={() => removeFromDb(todo)}>-</button>
                 <button
                   onClick={(event) => {
