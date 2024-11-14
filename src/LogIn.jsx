@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LogIn.css";
 
 export default function LogIn() {
   // props.setShowNavBar(false);
@@ -57,6 +58,7 @@ export default function LogIn() {
             required
           />
         </label>
+        <br />
         <label>
           Enter password:
           <input
