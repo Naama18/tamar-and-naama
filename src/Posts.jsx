@@ -50,7 +50,7 @@ export default function Posts() {
     }
     return (
         <>
-        <h1>Your Posts:</h1>
+        <h2>Your Posts:</h2>
             <button onClick={()=>setAdd(true)}>ADD POST</button>
             {add &&
                 <form onSubmit={AddPost}>

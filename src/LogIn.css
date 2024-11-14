@@ -1,19 +1,6 @@
-*{
-    background-color: #f1e1c6; /* Classic Beige */
-    color: #6b4f31; /* Walnut Brown */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
+body{
+    background-color:#f0b6c1;
+}
 button{
     display: inline-block;
     padding: 15px 25px;
@@ -22,12 +9,70 @@ button{
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
-    background-color: #043baa;
+    color: #e09797;
+    background-color: whitesmoke;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
+    margin: 15px;
   }
-*{
-    margin-top: auto;
+  h1{
+    font-size: 60px;
+    font-family: "Aclonica", sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px whitesmoke;
+  }
+  h2{
+    font-size: 40px;
+    font-family: "Aclonica", sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px whitesmoke;
+
+  }
+  li{
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 15px;
+  }
+  p{
+    font-size: 40px;
+  }
+  #post{
+    border: 3px solid whitesmoke;
+    margin: 20px;
+    border-radius: 15px;
+    background-color: #fff1f3db;
+  }
+span{
+    font-size: 30px;
+}
+#post p{
+    background-color: #fff1f3db;
+}
+#post button{
+    background-color: pink;
+    color: white;
+    font-size: 20px;
+}
+label{
+    font-size:30px;
+   
+}
+input[type="checkbox" i] {
+    height: 50px;
+    width:25px;
+}
+.todoClass{
+    border: 2px solid whitesmoke;
+   background-color: whitesmoke;
+   margin:15px;
+   border-radius: 15px;
+}
+.todoClass button{
+    background-color: pink;
+    color: white;
+    font-size: 20px;
+}
+input[type="text" i]{
+    font-size: 30px;
 }

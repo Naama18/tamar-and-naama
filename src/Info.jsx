@@ -10,7 +10,7 @@ export default function Info() {
   let adress = current.address.city;
   return (
     <div>
-      <h1>more information:</h1>
+      <h2>more information:</h2>
       <ul>
         <li> full name: {name}</li>
         <li>email: {email}</li>

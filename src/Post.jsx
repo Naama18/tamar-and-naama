@@ -9,24 +9,24 @@ export default function Post(props) {
     const [newcomment, setnewcomment] = useState("")
     const [submited, setSubmited] = useState(false)
     const [EditTitle, setEditTitle] = useState(false);
-    const [title, setTitle]=useState("")
+    const [title, setTitle] = useState("")
     console.log(data)
-    async function handleSaveChanges(){
-        const url=`http://localhost:3500/posts/${props.post.id}`
-        const updateOption={
-            method:'PATCH',
+    async function handleSaveChanges() {
+        const url = `http://localhost:3500/posts/${props.post.id}`
+        const updateOption = {
+            method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({title:title})
+            body: JSON.stringify({ title: title })
         }
-    
+
         fetch(url, updateOption)
-        .then((response)=>response.json)
-        .then((data)=>console.log("update"))
-   .catch((error)=>console.error(error))
-     
-    
+            .then((response) => response.json)
+            .then((data) => console.log("update"))
+            .catch((error) => console.error(error))
+
+
 
     }
     useEffect(() => {
@@ -102,80 +102,80 @@ export default function Post(props) {
             })
             .catch((error) => console.log(error))
     }
-    function onSubmitEdit(){
-        
+    function onSubmitEdit() {
+
         setEditTitle(false);
-        let arrayEdit=props.arr;
-        arrayEdit[props.i].title=title;
-        console.log(' arrayEdit[props.i].title: ',  arrayEdit[props.i].title);
+        let arrayEdit = props.arr;
+        arrayEdit[props.i].title = title;
+        console.log(' arrayEdit[props.i].title: ', arrayEdit[props.i].title);
         props.setArr(arrayEdit);
         handleSaveChanges();
 
-       
+
 
     }
-    
+
 
     return (
-        <div>
+        <div id="post">
 
             <p>id: {props.post.id}</p>
             {!EditTitle ? <p>title: {props.post.title}</p> :
-             <form onSubmit={onSubmitEdit}>
-                <label>Enter edit title:
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => {
-                            setTitle(e.target.value)
-                        }}
-                        
-                    />
-                </label>
-                <input type="submit" />
+                <form onSubmit={onSubmitEdit}>
+                    <label>Enter edit title:
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value)
+                            }}
+
+                        />
+                    </label>
+                    <input type="submit" />
                 </form>}
-                <button onClick={() => setBody(props.post.body)}>Content</button>
-                <button onClick={DeletePost}>DELETE</button>
-                <button onClick={() => setEditTitle(true)}>EDIT</button>
-                <button onClick={() => setShowComments(true)}>Show Comments</button>
-                <button onClick={() => setAddComment(true)}>Add Comment</button>
-                {addComment &&
+            <button onClick={() => setBody(props.post.body)}>Content</button>
+            <button onClick={DeletePost}>DELETE</button>
+            <button onClick={() => setEditTitle(true)}>EDIT</button>
+            <button onClick={() => setShowComments(true)}>Show Comments</button>
+            <button onClick={() => setAddComment(true)}>Add Comment</button>
+            {addComment &&
+                <div>
+                    <form onSubmit={submitAddComment}>
+                        <label>Enter username:
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => {
+                                    setUserNmae(e.target.value)
+                                }}
+                            />
+                        </label>
+                        <label>Enter Comment:
+                            <input
+                                type="text"
+                                value={newcomment}
+                                onChange={(e) => {
+                                    setnewcomment(e.target.value)
+                                }}
+
+                            />
+                        </label>
+                        <input type="submit" />
+                    </form>
+
+                </div>
+            }
+            {showComments &&
+                data.map((comment) =>
                     <div>
-                        <form onSubmit={submitAddComment}>
-                            <label>Enter username:
-                                <input
-                                    type="text"
-                                    value={username}
-                                    onChange={(e) => {
-                                        setUserNmae(e.target.value)
-                                    }}
-                                />
-                            </label>
-                            <label>Enter Comment:
-                                <input
-                                    type="text"
-                                    value={newcomment}
-                                    onChange={(e) => {
-                                        setnewcomment(e.target.value)
-                                    }}
-
-                                />
-                            </label>
-                            <input type="submit" />
-                        </form>
-
+                        <span><strong>username: </strong>"{comment.name}" <strong>comment: </strong></span>
+                        <span>{comment.body}</span>
+                        <span><button onClick={() => DeleteComment(comment.id, comment)}>Delet Comment</button></span>
                     </div>
-                }
-                {showComments &&
-                    data.map((comment) =>
-                        <div>
-                            <span><strong>username: </strong>"{comment.name}" <strong>comment: </strong></span>
-                            <span>{comment.body}</span>
-                            <span><button onClick={() => DeleteComment(comment.id, comment)}>Delet Comment</button></span>
-                        </div>
-                    )}
+                )}
 
-                <p>{body}</p>
-            </div>
+            <p>{body}</p>
+        </div>
     )
 }
